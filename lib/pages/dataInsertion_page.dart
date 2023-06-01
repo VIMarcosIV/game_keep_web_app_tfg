@@ -1,7 +1,7 @@
-import 'dart:io';
+import 'dart:html' as html;
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' as fb;
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class DataInsertion_Page extends StatefulWidget {
   const DataInsertion_Page({Key? key}) : super(key: key);
@@ -13,25 +13,44 @@ class DataInsertion_Page extends StatefulWidget {
 class _DataInsertion_PageState extends State<DataInsertion_Page> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _titleController = TextEditingController();
-  XFile? _selectedImage;
-  final picker = ImagePicker();
+  html.File? _selectedImage;
 
-  Future<void> _selectImage() async {
-    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _selectedImage = pickedImage;
+  void _selectImage() async {
+    final html.InputElement? input =
+        html.document.createElement('input') as html.InputElement?;
+    input!.type = 'file';
+    input.accept = 'image/*';
+    input.click();
+    input.onChange.listen((e) {
+      final List<html.File>? files = input.files;
+      if (files != null && files.length > 0) {
+        setState(() {
+          _selectedImage = files[0];
+        });
+      }
     });
   }
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      // Guardar los datos en Firestore
       final String title = _titleController.text;
 
+      // Guardar la imagen en Firebase Storage
       try {
-        await FirebaseFirestore.instance.collection('videojuegos').add({
-          'title': title,
-        });
+        final firebase_storage.Reference storageRef =
+            firebase_storage.FirebaseStorage.instance.ref().child('posters');
+        final firebase_storage.UploadTask uploadTask =
+            storageRef.child(_selectedImage!.name).putBlob(_selectedImage!);
+
+        final firebase_storage.TaskSnapshot taskSnapshot =
+            await uploadTask.whenComplete(() => null);
+
+        final String imageURL = await taskSnapshot.ref.getDownloadURL();
+
+        // Guardar los datos en Firestore
+        await fb.FirebaseFirestore.instance
+            .collection('videojuegos')
+            .add({'title': title, 'poster': imageURL});
 
         // Restablecer el formulario
         _formKey.currentState!.reset();
@@ -42,14 +61,15 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Datos guardados en Firestore'),
+            content: Text(
+                'Datos guardados en Firestore y la imagen en Firebase Storage'),
             backgroundColor: Colors.green,
           ),
         );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error al guardar los datos en Firestore'),
+            content: Text('Error al guardar los datos'),
             backgroundColor: Colors.red,
           ),
         );
@@ -89,8 +109,8 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
               ),
               SizedBox(height: 16.0),
               if (_selectedImage != null)
-                Image.file(
-                  File(_selectedImage!.path),
+                Image.network(
+                  html.Url.createObjectUrl(_selectedImage!),
                   height: 200.0,
                 ),
               SizedBox(height: 16.0),
