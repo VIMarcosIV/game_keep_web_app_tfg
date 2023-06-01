@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/form_page.dart';
+import 'package:flutter_tfg_web/pages/dataInsertion_page.dart';
 
 class AuthProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
@@ -85,7 +84,7 @@ class AuthProvider extends ChangeNotifier {
           print("Rol:" + userRole);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => FormPage()),
+            MaterialPageRoute(builder: (context) => DataInsertion_Page()),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(

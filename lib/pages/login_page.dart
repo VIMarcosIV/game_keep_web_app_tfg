@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tfg_web/pages/dataInsertion_page.dart';
+import 'package:flutter_tfg_web/pages/unauthorized_page.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/auth_provider.dart';
-import 'form_page.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key});
@@ -143,7 +145,15 @@ class LoginPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Esperando la obtención del documento de Firestore
-          return CircularProgressIndicator();
+          return SpinKitFadingCircle(
+            itemBuilder: (BuildContext context, int index) {
+              return DecoratedBox(
+                decoration: BoxDecoration(
+                  color: index.isEven ? Colors.black : Colors.grey,
+                ),
+              );
+            },
+          );
         } else if (snapshot.hasError) {
           // Error al obtener el documento de Firestore
           return Text('Error al obtener el documento');
@@ -154,12 +164,12 @@ class LoginPage extends StatelessWidget {
 
             final userRole = userData?['role'];
             if (userRole == 'admin') {
-              return FormPage();
+              return DataInsertion_Page();
             } else {
-              return Text('El usuario no tiene los privilegios necesarios');
+              return UnauthorizedScreen();
             }
           } else {
-            return Text('El usuario no tiene los privilegios necesarios');
+            return UnauthorizedScreen();
           }
         }
       },
