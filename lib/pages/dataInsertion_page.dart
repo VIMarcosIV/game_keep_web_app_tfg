@@ -81,7 +81,7 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Insertar datos'),
+        title: Text('Inserta los datos'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -94,6 +94,8 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                 controller: _titleController,
                 decoration: InputDecoration(
                   labelText: 'Título',
+                  hoverColor: Colors.white,
+                  fillColor: Colors.white,
                 ),
                 validator: (value) {
                   if (value!.isEmpty) {

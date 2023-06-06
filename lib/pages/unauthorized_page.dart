@@ -21,7 +21,7 @@ class UnauthorizedScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'No tienes los privilegios necesarios, reinicia e intentalo nuevamente con una cuenta válida',
+                  'La cuenta utilizada no posee los privilegios necesarios, reinicia la aplicación intentalo nuevamente con una cuenta válida',
                   style: Theme.of(context)
                       .textTheme
                       .headline6
