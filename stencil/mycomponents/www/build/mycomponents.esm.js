@@ -1,0 +1,2 @@
+import{p as t,b as o}from"./p-6609f9c8.js";export{s as setNonce}from"./p-6609f9c8.js";const e=()=>{const o=import.meta.url;const s={};if(o!==""){s.resourcesUrl=new URL(".",o).href}return t(s)};e().then((t=>o([["p-d294220d",[[1,"title-component",{size:[1],text:[1],color:[1]}]]]],t)));
+//# sourceMappingURL=mycomponents.esm.js.map
