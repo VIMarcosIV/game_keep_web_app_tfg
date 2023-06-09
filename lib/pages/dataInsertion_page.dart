@@ -1,9 +1,8 @@
 import 'dart:html' as html;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart' as fb;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' as cloud_firestore;
 
 class DataInsertion_Page extends StatefulWidget {
   const DataInsertion_Page({Key? key}) : super(key: key);
@@ -50,7 +49,7 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
         final String imageURL = await taskSnapshot.ref.getDownloadURL();
 
         // Guardar los datos en Firestore
-        await fb.FirebaseFirestore.instance
+        await cloud_firestore.FirebaseFirestore.instance
             .collection('videojuegos')
             .add({'title': title, 'poster': imageURL});
 
@@ -180,8 +179,8 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                             SizedBox(
                               height: 10,
                             ),
-                            StreamBuilder<fb.QuerySnapshot>(
-                              stream: fb.FirebaseFirestore.instance
+                            StreamBuilder<cloud_firestore.QuerySnapshot>(
+                              stream: cloud_firestore.FirebaseFirestore.instance
                                   .collection('videojuegos')
                                   .snapshots(),
                               builder: (context, snapshot) {
@@ -271,8 +270,8 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SizedBox(height: 16.0),
-                        StreamBuilder<QuerySnapshot>(
-                          stream: fb.FirebaseFirestore.instance
+                        StreamBuilder<cloud_firestore.QuerySnapshot>(
+                          stream: cloud_firestore.FirebaseFirestore.instance
                               .collection('videojuegos')
                               .snapshots(),
                           builder: (context, snapshot) {
@@ -292,14 +291,20 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                                 itemBuilder: (context, index) {
                                   final videojuego = videojuegos[index];
                                   final title = videojuego['title'];
-                                  final posterURL = videojuego['poster'];
+                                  final posterURL =
+                                      videojuego['poster'] as String;
 
                                   return Card(
                                     color: Colors.white.withOpacity(0.1),
                                     child: Column(
                                       children: [
-                                        Image.network(
-                                          posterURL,
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          child: Image.network(
+                                            posterURL,
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
                                         SizedBox(height: 8.0),
                                         Text(
@@ -307,7 +312,6 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ],
