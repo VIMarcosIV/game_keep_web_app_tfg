@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tfg_web/pages/dataInsertion_page.dart';
+
+import '../pages/dataInsertion_page.dart';
 
 class AuthProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();

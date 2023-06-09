@@ -1,141 +1,246 @@
+import 'package:Game_Keep_Web_Admin_Site/pages/unauthorized_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tfg_web/pages/dataInsertion_page.dart';
-import 'package:flutter_tfg_web/pages/unauthorized_page.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/auth_provider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import 'dataInsertion_page.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key});
-
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<AuthProvider>(context);
-    return Consumer<AuthProvider>(builder: (context, model, _) {
-      return StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            // Usuario no autenticado
-            return Scaffold(
-              body: LayoutBuilder(
-                builder: (context, constraints) {
-                  return SingleChildScrollView(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: constraints.maxHeight,
+    return Consumer<AuthProvider>(
+      builder: (context, model, _) {
+        return StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              // Usuario no autenticado
+              return Scaffold(
+                body: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/logo.png",
+                                        scale: 8),
+                                    SizedBox(
+                                      height: 14,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Game",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 40,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Keep",
+                                          style: TextStyle(
+                                            fontStyle: FontStyle.italic,
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.yellow,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      "Web",
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.blue[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Container(
+                                width: 400,
+                                child: SingleChildScrollView(
+                                  child: ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      minHeight: constraints.maxHeight,
+                                    ),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      padding: EdgeInsets.all(15.0),
+                                      child: Card(
+                                        color: Colors.white.withOpacity(0.05),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(20.0),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                child: TextField(
+                                                  controller:
+                                                      provider.emailController,
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors
+                                                          .white), // Color del texto
+                                                  cursorColor: Colors
+                                                      .teal, // Color del cursor
+                                                  decoration: InputDecoration(
+                                                    prefixIcon: Icon(
+                                                        Icons.email,
+                                                        color: Colors
+                                                            .white), // Color del icono
+                                                    enabledBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors
+                                                              .white), // Color del subrayado cuando no está seleccionado
+                                                    ),
+                                                    focusedBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors
+                                                              .white), // Color del subrayado cuando está seleccionado
+                                                    ),
+                                                    hintText:
+                                                        'Correo Electrónico',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors
+                                                            .white70), // Color del texto de sugerencia
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 20),
+                                              SizedBox(
+                                                height: 40,
+                                                child: TextField(
+                                                  controller: provider
+                                                      .passwordController,
+                                                  obscureText: true,
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors
+                                                          .white), // Color del texto
+                                                  cursorColor: Colors
+                                                      .teal, // Color del cursor
+                                                  decoration: InputDecoration(
+                                                    prefixIcon: Icon(
+                                                        Icons.password,
+                                                        color: Colors
+                                                            .white), // Color del icono
+                                                    enabledBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors
+                                                              .white), // Color del subrayado cuando no está seleccionado
+                                                    ),
+                                                    focusedBorder:
+                                                        UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                          color: Colors
+                                                              .white), // Color del subrayado cuando está seleccionado
+                                                    ),
+                                                    hintText: 'Contraseña',
+                                                    hintStyle: TextStyle(
+                                                        color: Colors
+                                                            .white70), // Color del texto de sugerencia
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 20),
+                                              Container(
+                                                width: double.infinity,
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    provider
+                                                        .logearUsuario(context);
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                    'Entrar',
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: 20),
+                                              Container(
+                                                width: double.infinity,
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    provider.registrarUsuario(
+                                                        context);
+                                                  },
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Color.fromRGBO(
+                                                            231, 25, 31, 0.86),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                    'Registrarse',
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(15.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/logo.png", scale: 8),
-                            SizedBox(height: 40),
-                            SizedBox(
-                              height: 40,
-                              child: TextField(
-                                controller: provider.emailController,
-                                style: TextStyle(
-                                    color: Colors.white), // Color del texto
-                                cursorColor: Colors.teal, // Color del cursor
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.email,
-                                      color: Colors.white), // Color del icono
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors
-                                            .white), // Color del subrayado cuando no está seleccionado
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors
-                                            .white), // Color del subrayado cuando está seleccionado
-                                  ),
-                                  hintText: 'Correo Electrónico',
-                                  hintStyle: TextStyle(
-                                      color: Colors
-                                          .white70), // Color del texto de sugerencia
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 16),
-                            SizedBox(
-                              height: 40,
-                              child: TextField(
-                                controller: provider.passwordController,
-                                obscureText: true,
-                                style: TextStyle(
-                                    color: Colors.white), // Color del texto
-                                cursorColor: Colors.teal, // Color del cursor
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.password,
-                                      color: Colors.white), // Color del icono
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors
-                                            .white), // Color del subrayado cuando no está seleccionado
-                                  ),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors
-                                            .white), // Color del subrayado cuando está seleccionado
-                                  ),
-                                  hintText: 'Contraseña',
-                                  hintStyle: TextStyle(
-                                      color: Colors
-                                          .white70), // Color del texto de sugerencia
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 16),
-                            Container(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  provider.logearUsuario(context);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                                child: Text('Entrar'),
-                              ),
-                            ),
-                            SizedBox(height: 16),
-                            Container(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  provider.registrarUsuario(context);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                                child: Text('Registrarse'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            );
-          } else {
-            return _buildAuthStateWidget(context);
-          }
-        },
-      );
-    });
+                    );
+                  },
+                ),
+              );
+            } else {
+              return _buildAuthStateWidget(context);
+            }
+          },
+        );
+      },
+    );
   }
 
   Widget _buildAuthStateWidget(BuildContext context) {

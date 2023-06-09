@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tfg_web/pages/login_page.dart';
 import '../themes/custom_theme.dart';
 
 class UnauthorizedScreen extends StatelessWidget {
