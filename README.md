@@ -1,16 +1,15 @@
-# flutter_tfg_web
+# Game Keep Web App Admin Site
 
-A new Flutter project.
+Web App made for administration purpuses
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is made with these three technologies: 
+-Flutter
+-Firebase
+-StencilJS
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Overview
+- Login page for admins
+- Data insertion and removal page
+- Users can't access without the admin privilegies or permissions
