@@ -85,43 +85,101 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextFormField(
-                controller: _titleController,
-                decoration: InputDecoration(
-                  labelText: 'Título',
-                  hoverColor: Colors.white,
-                  fillColor: Colors.white,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        TextFormField(
+                          controller: _titleController,
+                          decoration: InputDecoration(
+                            labelText: 'Título',
+                            hoverColor: Colors.white,
+                            fillColor: Colors.white,
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Por favor, introduce un título';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16.0),
+                        ElevatedButton(
+                          onPressed: _selectImage,
+                          child: Text('Seleccionar imagen'),
+                        ),
+                        SizedBox(height: 16.0),
+                        if (_selectedImage != null)
+                          Image.network(
+                            html.Url.createObjectUrl(_selectedImage!),
+                            height: 200.0,
+                          ),
+                        SizedBox(height: 16.0),
+                        ElevatedButton(
+                          onPressed: _submitForm,
+                          child: Text('Guardar datos'),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, introduce un título';
-                  }
-                  return null;
-                },
               ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: _selectImage,
-                child: Text('Seleccionar imagen'),
-              ),
-              SizedBox(height: 16.0),
-              if (_selectedImage != null)
-                Image.network(
-                  html.Url.createObjectUrl(_selectedImage!),
-                  height: 200.0,
+            ),
+            SizedBox(width: 16.0),
+            Expanded(
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        TextFormField(
+                          controller: _titleController,
+                          decoration: InputDecoration(
+                            labelText: 'Título',
+                            hoverColor: Colors.white,
+                            fillColor: Colors.white,
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Por favor, introduce un título';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16.0),
+                        ElevatedButton(
+                          onPressed: _selectImage,
+                          child: Text('Seleccionar imagen'),
+                        ),
+                        SizedBox(height: 16.0),
+                        if (_selectedImage != null)
+                          Image.network(
+                            html.Url.createObjectUrl(_selectedImage!),
+                            height: 200.0,
+                          ),
+                        SizedBox(height: 16.0),
+                        ElevatedButton(
+                          onPressed: _submitForm,
+                          child: Text('Guardar datos'),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: Text('Guardar datos'),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
