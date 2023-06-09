@@ -1,23 +1,23 @@
 'use strict';
 
 function _interopNamespace(e) {
-  if (e && e.__esModule) return e;
-  var n = Object.create(null);
-  if (e) {
-    Object.keys(e).forEach(function (k) {
-      if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
-        Object.defineProperty(n, k, d.get ? d : {
-          enumerable: true,
-          get: function () {
-            return e[k];
-          }
+    if (e && e.__esModule) return e;
+    var n = Object.create(null);
+    if (e) {
+        Object.keys(e).forEach(function (k) {
+            if (k !== 'default') {
+                var d = Object.getOwnPropertyDescriptor(e, k);
+                Object.defineProperty(n, k, d.get ? d : {
+                    enumerable: true,
+                    get: function () {
+                        return e[k];
+                    }
+                });
+            }
         });
-      }
-    });
-  }
-  n['default'] = e;
-  return Object.freeze(n);
+    }
+    n['default'] = e;
+    return Object.freeze(n);
 }
 
 const NAMESPACE = 'mycomponents';
@@ -779,7 +779,7 @@ const renderVdom = (hostRef, renderFnResults) => {
     rootVnode.$tag$ = null;
     rootVnode.$flags$ |= 4 /* VNODE_FLAGS.isHost */;
     hostRef.$vnode$ = rootVnode;
-    rootVnode.$elm$ = oldVNode.$elm$ = (hostElm.shadowRoot || hostElm );
+    rootVnode.$elm$ = oldVNode.$elm$ = (hostElm.shadowRoot || hostElm);
     {
         scopeId = hostElm['s-sc'];
     }
@@ -804,7 +804,7 @@ const scheduleUpdate = (hostRef, isInitialLoad) => {
     // has already fired off its lifecycle update then
     // fire off the initial update
     const dispatch = () => dispatchHooks(hostRef, isInitialLoad);
-    return writeTask(dispatch) ;
+    return writeTask(dispatch);
 };
 /**
  * Dispatch initial-render and update lifecycle hooks, enqueuing calls to
@@ -818,7 +818,7 @@ const scheduleUpdate = (hostRef, isInitialLoad) => {
  */
 const dispatchHooks = (hostRef, isInitialLoad) => {
     const endSchedule = createTime('scheduleUpdate', hostRef.$cmpMeta$.$tagName$);
-    const instance = hostRef.$lazyInstance$ ;
+    const instance = hostRef.$lazyInstance$;
     // We're going to use this variable together with `enqueue` to implement a
     // little promise-based queue. We start out with it `undefined`. When we add
     // the first function to the queue we'll set this variable to be that
@@ -889,7 +889,7 @@ const updateComponent = async (hostRef, instance, isInitialLoad) => {
 };
 const callRender = (hostRef, instance, elm) => {
     try {
-        instance = instance.render() ;
+        instance = instance.render();
         {
             hostRef.$flags$ &= ~16 /* HOST_FLAGS.isQueuedForUpdate */;
         }
@@ -966,7 +966,7 @@ const setValue = (ref, propName, newVal, cmpMeta) => {
     const hostRef = getHostRef(ref);
     const oldVal = hostRef.$instanceValues$.get(propName);
     const flags = hostRef.$flags$;
-    const instance = hostRef.$lazyInstance$ ;
+    const instance = hostRef.$lazyInstance$;
     newVal = parsePropertyValue(newVal, cmpMeta.$members$[propName][0]);
     // explicitly check for NaN on both sides, as `NaN === NaN` is always false
     const areBothNaN = Number.isNaN(oldVal) && Number.isNaN(newVal);
@@ -1003,7 +1003,7 @@ const proxyComponent = (Cstr, cmpMeta, flags) => {
         const prototype = Cstr.prototype;
         members.map(([memberName, [memberFlags]]) => {
             if ((memberFlags & 31 /* MEMBER_FLAGS.Prop */ ||
-                    ((flags & 2 /* PROXY_FLAGS.proxyState */) && memberFlags & 32 /* MEMBER_FLAGS.State */))) {
+                ((flags & 2 /* PROXY_FLAGS.proxyState */) && memberFlags & 32 /* MEMBER_FLAGS.State */))) {
                 // proxyComponent - prop
                 Object.defineProperty(prototype, memberName, {
                     get() {
@@ -1077,10 +1077,10 @@ const proxyComponent = (Cstr, cmpMeta, flags) => {
             Cstr.observedAttributes = members
                 .filter(([_, m]) => m[0] & 15 /* MEMBER_FLAGS.HasAttribute */) // filter to only keep props that should match attributes
                 .map(([propName, m]) => {
-                const attrName = m[1] || propName;
-                attrNameToPropName.set(attrName, propName);
-                return attrName;
-            });
+                    const attrName = m[1] || propName;
+                    attrNameToPropName.set(attrName, propName);
+                    return attrName;
+                });
         }
     }
     return Cstr;
@@ -1290,6 +1290,49 @@ const bootstrapLazy = (lazyBundles, options = {}) => {
     else {
         {
             plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+
+                 plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
+            plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30))); plt.jmp(() => (appLoadFallback = setTimeout(appDidLoad, 30)));
         }
     }
     // Fallback appLoad event
@@ -1326,17 +1369,19 @@ const loadModule = (cmpMeta, hostRef, hmrVersionId) => {
     // loadModuleImport
     const exportName = cmpMeta.$tagName$.replace(/-/g, '_');
     const bundleId = cmpMeta.$lazyBundleId$;
-    const module = cmpModules.get(bundleId) ;
+    const module = cmpModules.get(bundleId);
     if (module) {
         return module[exportName];
     }
     /*!__STENCIL_STATIC_IMPORT_SWITCH__*/
-    return Promise.resolve().then(function () { return /*#__PURE__*/_interopNamespace(require(
-    /* @vite-ignore */
-    /* webpackInclude: /\.entry\.js$/ */
-    /* webpackExclude: /\.system\.entry\.js$/ */
-    /* webpackMode: "lazy" */
-    `./${bundleId}.entry.js${''}`)); }).then((importedModule) => {
+    return Promise.resolve().then(function () {
+        return /*#__PURE__*/_interopNamespace(require(
+            /* @vite-ignore */
+            /* webpackInclude: /\.entry\.js$/ */
+            /* webpackExclude: /\.system\.entry\.js$/ */
+            /* webpackMode: "lazy" */
+            `./${bundleId}.entry.js${''}`));
+    }).then((importedModule) => {
         {
             cmpModules.set(bundleId, importedModule);
         }
@@ -1357,13 +1402,13 @@ const plt = {
 };
 const promiseResolve = (v) => Promise.resolve(v);
 const supportsConstructableStylesheets = /*@__PURE__*/ (() => {
-        try {
-            new CSSStyleSheet();
-            return typeof new CSSStyleSheet().replaceSync === 'function';
-        }
-        catch (e) { }
-        return false;
-    })()
+    try {
+        new CSSStyleSheet();
+        return typeof new CSSStyleSheet().replaceSync === 'function';
+    }
+    catch (e) { }
+    return false;
+})()
     ;
 const queueDomReads = [];
 const queueDomWrites = [];
