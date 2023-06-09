@@ -5,9 +5,9 @@ Web App made for administration purpuses
 ## Getting Started
 
 This project is made with these three technologies: 
--Flutter
--Firebase
--StencilJS
+- Flutter
+- Firebase
+- StencilJS
 
 ### Overview
 - Login page for admins
