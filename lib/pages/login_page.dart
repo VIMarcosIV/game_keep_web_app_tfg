@@ -250,14 +250,17 @@ class LoginPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           // Esperando la obtención del documento de Firestore
-          return SpinKitFadingCircle(
-            itemBuilder: (BuildContext context, int index) {
-              return DecoratedBox(
-                decoration: BoxDecoration(
-                  color: index.isEven ? Colors.black : Colors.grey,
-                ),
-              );
-            },
+          return Container(
+            color: Color(0xFF1E1E1E), // Establecer el color de fondo
+            child: SpinKitFadingCircle(
+              itemBuilder: (BuildContext context, int index) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: index.isEven ? Colors.black : Colors.grey,
+                  ),
+                );
+              },
+            ),
           );
         } else if (snapshot.hasError) {
           // Error al obtener el documento de Firestore
