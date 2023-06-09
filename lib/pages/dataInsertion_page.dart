@@ -78,11 +78,67 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
     }
   }
 
+  Future<void> _confirmDeleteDialog(
+      cloud_firestore.DocumentSnapshot videojuego) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Color(0xFF1E1E1E),
+          title: const Text('Confirmar eliminación',
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              )),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text(
+                  '¿Estás seguro de eliminar este elemento?',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child:
+                  const Text('Cancelar', style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text(
+                'Eliminar',
+                style:
+                    TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+              ),
+              onPressed: () async {
+                // Eliminar el elemento de Firestore
+                await videojuego.reference.delete();
+
+                Navigator.of(context).pop();
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('Elemento eliminado'),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Inserta los datos'),
+        title: Text('Herramienta de administración'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -294,27 +350,31 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                                   final posterURL =
                                       videojuego['poster'] as String;
 
-                                  return Card(
-                                    color: Colors.white.withOpacity(0.1),
-                                    child: Column(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          child: Image.network(
-                                            posterURL,
-                                            fit: BoxFit.contain,
+                                  return GestureDetector(
+                                    onTap: () => _confirmDeleteDialog(
+                                        videojuego), // Llamar al método _confirmDeleteDialog
+                                    child: Card(
+                                      color: Colors.white.withOpacity(0.1),
+                                      child: Column(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            child: Image.network(
+                                              posterURL,
+                                              fit: BoxFit.contain,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(height: 8.0),
-                                        Text(
-                                          title,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          SizedBox(height: 8.0),
+                                          Text(
+                                            title,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
