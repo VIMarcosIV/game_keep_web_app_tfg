@@ -329,53 +329,30 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                         StreamBuilder<cloud_firestore.QuerySnapshot>(
                           stream: cloud_firestore.FirebaseFirestore.instance
                               .collection('videojuegos')
+                              .orderBy("title")
                               .snapshots(),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               final videojuegos = snapshot.data!.docs;
-                              return GridView.builder(
+                              return ListView.builder(
                                 shrinkWrap: true,
-                                physics:
-                                    NeverScrollableScrollPhysics(), // Disable GridView scrolling
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4,
-                                  crossAxisSpacing: 16.0,
-                                  mainAxisSpacing: 16.0,
-                                ),
+                                physics: NeverScrollableScrollPhysics(),
                                 itemCount: videojuegos.length,
                                 itemBuilder: (context, index) {
                                   final videojuego = videojuegos[index];
                                   final title = videojuego['title'];
-                                  final posterURL =
-                                      videojuego['poster'] as String;
 
-                                  return GestureDetector(
+                                  return ListTile(
+                                    title: Text(
+                                      title,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    trailing: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                    ),
                                     onTap: () => _confirmDeleteDialog(
                                         videojuego), // Llamar al método _confirmDeleteDialog
-                                    child: Card(
-                                      color: Colors.white.withOpacity(0.1),
-                                      child: Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(12)),
-                                            child: Image.network(
-                                              posterURL,
-                                              fit: BoxFit.contain,
-                                            ),
-                                          ),
-                                          SizedBox(height: 8.0),
-                                          Text(
-                                            title,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
                                   );
                                 },
                               );
