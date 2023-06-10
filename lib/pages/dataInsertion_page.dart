@@ -321,7 +321,6 @@ class _DataInsertion_PageState extends State<DataInsertion_Page> {
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
-                    // Added SingleChildScrollView widget
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
